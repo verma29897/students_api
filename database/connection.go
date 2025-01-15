@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/verma29897/students-api/models"
+	"github.com/verma29897/students_api/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

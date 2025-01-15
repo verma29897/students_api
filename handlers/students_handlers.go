@@ -5,8 +5,8 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/verma29897/students-api/database"
-	"github.com/verma29897/students-api/models"
+	"github.com/verma29897/students_api/database"
+	"github.com/verma29897/students_api/models"
 )
 
 func RegisterStudentRoutes(rg *gin.RouterGroup) {

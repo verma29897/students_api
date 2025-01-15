@@ -8,9 +8,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
-	"github.com/verma29897/students-api/config"
-	"github.com/verma29897/students-api/database"
-	"github.com/verma29897/students-api/handlers"
+	"github.com/verma29897/students_api/config"
+	"github.com/verma29897/students_api/database"
+	"github.com/verma29897/students_api/handlers"
 )
 
 func main() {
