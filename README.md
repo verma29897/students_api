@@ -29,6 +29,7 @@ A simple RESTful API for managing students, built with Go, Gin, and PostgreSQL. 
 git clone https://github.com/verma29897/students-api.git
 cd students-api
 go mod tidy
+go run main.go -config config/local.yaml
 ```
 
 ## Configuration in local.yaml file
