@@ -29,7 +29,7 @@ A simple RESTful API for managing students, built with Go, Gin, and PostgreSQL. 
 git clone https://github.com/verma29897/students-api.git
 cd students-api
 go mod tidy
-
+```
 
 ## Configuration in local.yaml file
 
@@ -50,6 +50,7 @@ ENV=development
 http_server:
   Hostname: "localhost"
   Addr: "9090"
+```
 
 ## .env Configuration
 
@@ -57,18 +58,15 @@ The `.env` file is used to store environment variables for your application. Thi
 
 ### Example `.env` File:
 
-```env
-
-
 # Database Configuration
+```env
 GIN_MODE="release" # or "debug"
 DB_USER=your_db_user
 DB_PASSWORD=your_db_password
 DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=your_db_name
-
-
+```
 
 
 
@@ -103,8 +101,7 @@ This is a simple API to manage student records. You can perform CRUD operations 
       "email": "jane.doe@example.com",
       "phone": "987-654-3210"
     }
-  ]
-
+  ]```
 
 ### Explanation:
 
