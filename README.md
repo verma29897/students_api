@@ -101,7 +101,7 @@ This is a simple API to manage student records. You can perform CRUD operations 
       "email": "jane.doe@example.com",
       "phone": "987-654-3210"
     }
-  ]```
+  ]
 
 ### Explanation:
 
