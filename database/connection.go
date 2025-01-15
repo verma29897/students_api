@@ -1,42 +1,44 @@
 package database
 
 import (
-	"fmt"
 	"log"
-	"time"
+	"os"
 
-	"github.com/verma29897/students-api/config"
+	"github.com/verma29897/students-api/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 var DB *gorm.DB
 
-func ConnectDB(dbConfig config.DatabaseConfig) {
-	// Validate config
-	if dbConfig.Host == "" || dbConfig.User == "" || dbConfig.Password == "" || dbConfig.Name == "" {
-		log.Fatal("Database configuration is incomplete.")
+// ConnectDB establishes a connection to the database and performs auto-migration
+func ConnectDB() {
+	DB_USER := os.Getenv("DB_USER")
+	DB_PASSWORD := os.Getenv("DB_PASSWORD")
+	DB_HOST := os.Getenv("DB_HOST")
+	DB_PORT := os.Getenv("DB_PORT")
+	DB_NAME := os.Getenv("DB_NAME")
+
+	dsn := "postgresql://" + DB_USER + ":" + DB_PASSWORD + "@" + DB_HOST + ":" + DB_PORT + "/" + DB_NAME
+
+	if dsn == "postgresql://:@:/" {
+		log.Fatal("DATABASE_URL environment variable is not set or is incomplete")
 	}
 
-	// Build connection string
-	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=%s",
-		dbConfig.Host, dbConfig.User, dbConfig.Password, dbConfig.Name, dbConfig.Port, dbConfig.SSLMode)
+	//log.Println("Database connection string:", dsn)
 
 	var err error
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		log.Fatalf("Failed to connect to the database: %v", err)
+		log.Fatalf("Failed to connect to database: %v", err)
 	}
 
-	// Set connection pooling
-	sqlDB, err := DB.DB()
-	if err == nil {
-		sqlDB.SetMaxOpenConns(100)
-		sqlDB.SetMaxIdleConns(10)
-		sqlDB.SetConnMaxLifetime(time.Hour)
+	// Auto-migrate the Student model
+	if err := DB.AutoMigrate(&models.Student{}); err != nil {
+		log.Fatalf("Failed to migrate database: %v", err)
 	}
 
-	log.Println("Successfully connected to the database!")
+	log.Println("Database connection established and migration complete")
 }
 
 func CloseDB() {
