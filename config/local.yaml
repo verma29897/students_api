@@ -1,0 +1,5 @@
+env: "development"
+
+http_server:
+  Hostname: "localhost"  
+  Addr: "8080"   
